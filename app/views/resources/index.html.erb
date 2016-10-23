@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Resources</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Link</th>
+	  <th>File</th>
+      <th>Last modified</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.name %></td>
+        <td><%= resource.description %></td>
+        <td><%= Category.find(resource.category_id).name %></td>
+		<td>
+			<% unless resource.link.empty? %>
+				<a href="<%= resource.link %>" target="_blank">Open Link</a>
+			<% end %>	
+		</td>	
+		<td>
+			<% if resource.file %>
+				<a href="<%= resource.file %>" target="_blank">Open Link</a>
+			<% end %>
+		</td>
+        <td><%= resource.last_modified %></td>
+        <td><%= link_to 'Show', resource %></td>
+        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Resource', new_resource_path %>
+<a href="http://localhost:3000/categories">Show Categories</a>
