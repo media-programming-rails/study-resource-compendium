@@ -3,13 +3,10 @@ class ResourcesController < ApplicationController
 
   # GET /resources/1/like
   def like
-    if @resource.score == nil
-      @resource.score = 0
-    end
     @resource.score = @resource.score + 1
 
       respond_to do |format|
-        if @resource.update(resource_params)
+        if @resource.save
           format.html { redirect_to @resource, notice: 'Resource was liked successfully.' }
           format.json { render :show, status: :ok, location: @resource }
         else
@@ -21,13 +18,10 @@ class ResourcesController < ApplicationController
   
   # GET /resources/1/dislike
   def dislike
-    if @resource.score == nil
-      @resource.score = 0
-    end
     @resource.score = @resource.score - 1
     
       respond_to do |format|
-        if @resource.update(resource_params)
+        if @resource.save
           format.html { redirect_to @resource, notice: 'Resource was disliked successfully.' }
           format.json { render :show, status: :ok, location: @resource }
         else
