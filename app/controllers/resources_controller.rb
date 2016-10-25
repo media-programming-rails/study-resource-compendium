@@ -1,12 +1,40 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :like, :dislike]
 
+  # GET /resources/1/like
   def like
-    @resource.score = @resource.score + 1;
+    if @resource.score == nil
+      @resource.score = 0
+    end
+    @resource.score = @resource.score + 1
+
+      respond_to do |format|
+        if @resource.update(resource_params)
+          format.html { redirect_to @resource, notice: 'Resource was liked successfully.' }
+          format.json { render :show, status: :ok, location: @resource }
+        else
+          format.html { render :edit }
+          format.json { render json: @resource.errors, status: :unprocessable_entity }
+        end
+      end
   end
   
+  # GET /resources/1/dislike
   def dislike
-    @resource.score = @resource.score - 1;
+    if @resource.score == nil
+      @resource.score = 0
+    end
+    @resource.score = @resource.score - 1
+    
+      respond_to do |format|
+        if @resource.update(resource_params)
+          format.html { redirect_to @resource, notice: 'Resource was disliked successfully.' }
+          format.json { render :show, status: :ok, location: @resource }
+        else
+          format.html { render :edit }
+          format.json { render json: @resource.errors, status: :unprocessable_entity }
+        end
+      end
   end
 
   # GET /resources
@@ -35,7 +63,7 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
-  @resource.score = 0;
+  @resource.score = 0
 	@resource.last_modified = Date.today
 	@resource.category_id = params[:category_id] 
 
@@ -84,6 +112,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :description, :category_id, :link, :file, :last_modified)
+      params.require(:resource).permit(:name, :description, :category_id, :link, :file, :last_modified, :score)
     end
 end
