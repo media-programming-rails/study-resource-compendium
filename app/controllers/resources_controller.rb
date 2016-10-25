@@ -1,5 +1,13 @@
 class ResourcesController < ApplicationController
-  before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :like, :dislike]
+
+  def like
+    @resource.score = @resource.score + 1;
+  end
+  
+  def dislike
+    @resource.score = @resource.score - 1;
+  end
 
   # GET /resources
   # GET /resources.json
@@ -27,6 +35,7 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
+  @resource.score = 0;
 	@resource.last_modified = Date.today
 	@resource.category_id = params[:category_id] 
 

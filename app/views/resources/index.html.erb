@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+	  <th>Score</th>
       <th>Name</th>
       <th>Description</th>
       <th>Category</th>
@@ -18,6 +19,7 @@
   <tbody>
     <% @resources.each do |resource| %>
       <tr>
+      	<td><%= link_to "DOWN",dislike_path(resource) %> - <%= resource.score %> - <%= link_to "UP",like_path(resource) %></td>
         <td><%= resource.name %></td>
         <td><%= resource.description %></td>
         <td><%= Category.find(resource.category_id).name %></td>

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :resources
   resources :categories
   root :to => "resources#index"
+  
+  get '/resources/:id/like', to: 'resources#like', as: "like"
+  get '/resources/:id/dislike', to: 'resources#dislike', as: "dislike"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
