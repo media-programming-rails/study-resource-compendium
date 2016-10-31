@@ -7,7 +7,7 @@ class ResourcesController < ApplicationController
 
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to @resource, notice: 'Resource was liked successfully.' }
+          format.html { redirect_to resources_url, notice: 'Resource was liked successfully.' }
           format.json { render :show, status: :ok, location: @resource }
         else
           format.html { render :edit }
@@ -22,7 +22,7 @@ class ResourcesController < ApplicationController
     
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to @resource, notice: 'Resource was disliked successfully.' }
+          format.html { redirect_to resources_url, notice: 'Resource was disliked successfully.' }
           format.json { render :show, status: :ok, location: @resource }
         else
           format.html { render :edit }
