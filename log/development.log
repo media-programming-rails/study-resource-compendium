@@ -1,0 +1,2087 @@
+  [1m[36m (9.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (6.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateResources (20161023093159)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "resources" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "category_id" varchar, "link" varchar, "last_modified" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161023093159"]]
+  [1m[35m (7.0ms)[0m  commit transaction
+Migrating to CreateCategories (20161023093248)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161023093248"]]
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to AddAttachmentFileToResources (20161023093726)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "resources" ADD "file_file_name" varchar
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "resources" ADD "file_content_type" varchar[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "resources" ADD "file_file_size" integer
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "resources" ADD "file_updated_at" datetime[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161023093726"]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for ::1 at 2016-10-23 18:11:24 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (4.0ms)
+Completed 200 OK in 67ms (Views: 49.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 18:11:30 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 1651ms (Views: 1638.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 18:11:32 +0200
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 18:11:43 +0200
+Processing by ResourcesController#new as HTML
+  [1m[36mCategory Load (1.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/new.html.erb within layouts/application (41.0ms)
+Completed 500 Internal Server Error in 149ms (ActiveRecord: 2.0ms)
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:24: syntax error, unexpected tFID, expecting keyword_do or '{' or '('
+...ies), :prompt => “Select one!”) );@output_buffer.safe_ap...
+...                               ^
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:24: syntax error, unexpected ')', expecting keyword_end
+...:prompt => “Select one!”) );@output_buffer.safe_append='
+...                               ^):
+  app/views/resources/_form.html.erb:24: syntax error, unexpected tFID, expecting keyword_do or '{' or '('
+  app/views/resources/_form.html.erb:24: syntax error, unexpected ')', expecting keyword_end
+  app/views/resources/new.html.erb:3:in `_app_views_resources_new_html_erb__358416468_36454200'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1068.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (8.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1078.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2322.6ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 18:22:50 +0200
+Processing by ResourcesController#new as HTML
+  [1m[35mCategory Load (1.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (2.0ms)
+  Rendered resources/new.html.erb within layouts/application (26.0ms)
+Completed 500 Internal Server Error in 119ms (ActiveRecord: 1.0ms)
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:24: syntax error, unexpected tFID, expecting keyword_do or '{' or '('
+...ies), :prompt => “Select one!” );@output_buffer.safe_app...
+...                               ^):
+  app/views/resources/_form.html.erb:24: syntax error, unexpected tFID, expecting keyword_do or '{' or '('
+  app/views/resources/new.html.erb:3:in `_app_views_resources_new_html_erb__358416468_36454200'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (971.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1160.4ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2873.1ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 18:24:11 +0200
+Processing by ResourcesController#new as HTML
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (1.0ms)
+  Rendered resources/new.html.erb within layouts/application (25.0ms)
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 0.0ms)
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:24: syntax error, unexpected tFID, expecting keyword_do or '{' or '('
+...ies), :prompt => “Select one!”) );@output_buffer.safe_ap...
+...                               ^
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:24: syntax error, unexpected ')', expecting keyword_end
+...:prompt => “Select one!”) );@output_buffer.safe_append='
+...                               ^):
+  app/views/resources/_form.html.erb:24: syntax error, unexpected tFID, expecting keyword_do or '{' or '('
+  app/views/resources/_form.html.erb:24: syntax error, unexpected ')', expecting keyword_end
+  app/views/resources/new.html.erb:3:in `_app_views_resources_new_html_erb__358416468_36454200'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1015.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (884.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2058.4ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 18:25:52 +0200
+Processing by ResourcesController#new as HTML
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (42.0ms)
+  Rendered resources/new.html.erb within layouts/application (65.0ms)
+Completed 200 OK in 196ms (Views: 194.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 18:25:52 +0200
+
+
+Started GET "/categories/new" for ::1 at 2016-10-23 18:52:56 +0200
+Processing by CategoriesController#new as HTML
+  Rendered categories/_form.html.erb (3.0ms)
+  Rendered categories/new.html.erb within layouts/application (27.0ms)
+Completed 200 OK in 161ms (Views: 156.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/categories" for ::1 at 2016-10-23 18:54:11 +0200
+Processing by CategoriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NeF13m3LVjWb894ofRfUhmDqCnoe90g3HTAhRDFeL3ckPFohdxHlUS6lDNyFkAnv5vhkiuhe9C5BInbkUMQlHQ==", "category"=>{"name"=>"Mediaprogramming", "description"=>"Kurs des Masterstudiengangs Internationale Medieninformatik."}, "commit"=>"Create Category"}
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Mediaprogramming"], ["description", "Kurs des Masterstudiengangs Internationale Medieninformatik."], ["created_at", "2016-10-23 16:54:11.531340"], ["updated_at", "2016-10-23 16:54:11.531340"]]
+  [1m[36m (6.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/categories/1
+Completed 302 Found in 20ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/categories/1" for ::1 at 2016-10-23 18:54:11 +0200
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered categories/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 141ms (Views: 126.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 18:54:14 +0200
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 139ms (Views: 138.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 18:54:27 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (1.0ms)[0m  SELECT "resources".* FROM "resources"
+  Rendered resources/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 123ms (Views: 121.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 18:54:29 +0200
+Processing by ResourcesController#new as HTML
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/new.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 149ms (Views: 148.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 19:08:48 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 124ms (Views: 123.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 19:11:45 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 137ms (Views: 136.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 19:11:46 +0200
+
+
+Started GET "/" for ::1 at 2016-10-23 19:54:57 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  Rendered resources/index.html.erb within layouts/application (44.0ms)
+Completed 500 Internal Server Error in 159ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined local variable or method `categories_path' for #<#<Class:0x570fae0>:0x570cac8>):
+    36: 
+    37: <%= link_to 'New Resource', new_resource_path %>
+    38: <br>
+    39: <%= link_to 'Show Categories', categories_path %>
+    40: <br>
+    41: <%= link_to 'New Category', new_category_path %>
+  app/views/resources/index.html.erb:39:in `_app_views_resources_index_html_erb___566910697_45513612'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (17.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2054.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1796.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3846.6ms)
+
+
+Started GET "/" for ::1 at 2016-10-23 19:57:54 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  Rendered resources/index.html.erb within layouts/application (39.0ms)
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined local variable or method `categories_path' for #<#<Class:0x570fae0>:0x5785ef0>):
+    36: 
+    37: <%= link_to 'New Resource', new_resource_path %>
+    38: <br>
+    39: <%= link_to 'Show Categories', categories_path %>
+    40: <br>
+    41: <%= link_to 'New Category', new_category_path %>
+  app/views/resources/index.html.erb:39:in `_app_views_resources_index_html_erb___566910697_45885096'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (949.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (929.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2101.4ms)
+
+
+Started GET "/" for ::1 at 2016-10-23 19:58:12 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (1.0ms)[0m  SELECT "resources".* FROM "resources"
+  Rendered resources/index.html.erb within layouts/application (37.0ms)
+Completed 500 Internal Server Error in 109ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined local variable or method `new_category_path' for #<#<Class:0x570fae0>:0x4fad990>):
+    36: 
+    37: <%= link_to 'New Resource', new_resource_path %>
+    38: <br>
+    39: <%= link_to 'New Category', new_category_path %>
+  app/views/resources/index.html.erb:39:in `_app_views_resources_index_html_erb___566910697_46823880'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1031.4ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1015.4ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2655.3ms)
+
+
+Started GET "/" for ::1 at 2016-10-23 19:58:31 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  Rendered resources/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 414ms (Views: 413.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 19:58:31 +0200
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 19:58:40 +0200
+Processing by ResourcesController#new as HTML
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (43.0ms)
+  Rendered resources/new.html.erb within layouts/application (67.0ms)
+Completed 200 OK in 235ms (Views: 209.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-23 19:59:27 +0200
+Processing by ResourcesController#new as HTML
+  [1m[36mCategory Load (1.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/new.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 153ms (Views: 151.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 19:59:27 +0200
+
+
+Started POST "/resources" for ::1 at 2016-10-23 20:01:05 +0200
+Processing by ResourcesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1uJYD67zmcpGB5IWwVJinjpM+gXa6FtOM3fB+IIS0W/HP3fwtCkqrvNRQOI51b/3vF6U9SxB51dvZZZY44jbBQ==", "resource"=>{"name"=>"Test", "description"=>"Test", "link"=>"", "file"=>#<ActionDispatch::Http::UploadedFile:0x7837da0 @tempfile=#<Tempfile:C:/Users/MARTIN~1/AppData/Local/Temp/RackMultipart20161023-9528-h27ves.pdf>, @original_filename="example.pdf", @content_type="application/x-download", @headers="Content-Disposition: form-data; name=\"resource[file]\"; filename=\"example.pdf\"\r\nContent-Type: application/x-download\r\n">}, "category_id"=>"1", "commit"=>"Create Resource"}
+Command :: file -b --mime "C:/Users/MARTIN~1/AppData/Local/Temp/1a79a4d60de6718e8e5b326e338ae53320161023-9528-1fvotfv.pdf"
+Completed 500 Internal Server Error in 170ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `category_id=' for nil:NilClass):
+  app/controllers/resources_controller.rb:31:in `create'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1351.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1624.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3060.4ms)
+
+
+Started POST "/resources" for ::1 at 2016-10-23 20:03:06 +0200
+Processing by ResourcesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1uJYD67zmcpGB5IWwVJinjpM+gXa6FtOM3fB+IIS0W/HP3fwtCkqrvNRQOI51b/3vF6U9SxB51dvZZZY44jbBQ==", "resource"=>{"name"=>"Test", "description"=>"Test", "link"=>"", "file"=>#<ActionDispatch::Http::UploadedFile:0x84c3e70 @tempfile=#<Tempfile:C:/Users/MARTIN~1/AppData/Local/Temp/RackMultipart20161023-9528-14n2tqt.pdf>, @original_filename="example.pdf", @content_type="application/x-download", @headers="Content-Disposition: form-data; name=\"resource[file]\"; filename=\"example.pdf\"\r\nContent-Type: application/x-download\r\n">}, "category_id"=>"1", "commit"=>"Create Resource"}
+Command :: file -b --mime "C:/Users/MARTIN~1/AppData/Local/Temp/1a79a4d60de6718e8e5b326e338ae53320161023-9528-1sl3wzk.pdf"
+  [1m[35m (0.0ms)[0m  begin transaction
+Command :: file -b --mime "C:/Users/MARTIN~1/AppData/Local/Temp/1a79a4d60de6718e8e5b326e338ae53320161023-9528-qip2sn.pdf"
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "resources" ("name", "description", "link", "file_file_name", "file_content_type", "file_file_size", "file_updated_at", "last_modified", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Test"], ["description", "Test"], ["link", ""], ["file_file_name", "example.pdf"], ["file_content_type", "application/pdf"], ["file_file_size", 54836], ["file_updated_at", "2016-10-23 18:03:06.449742"], ["last_modified", "2016-10-23"], ["category_id", "1"], ["created_at", "2016-10-23 18:03:06.531801"], ["updated_at", "2016-10-23 18:03:06.531801"]]
+  [1m[35m (6.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/resources/1
+Completed 302 Found in 151ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 20:03:06 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (35.0ms)
+Completed 500 Internal Server Error in 132ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Product):
+    13: <p>
+    14:   <strong>Category:</strong>
+    15:   <h3> Products under this category </h3>
+    16:   <% Product.where(category_id: @category.id).each do |product| %>
+    17:     <li> <%= product.name %> </li>
+    18:   <% end %>
+    19: </p>
+  app/views/resources/show.html.erb:16:in `_app_views_resources_show_html_erb__718132366_71004264'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (945.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (872.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2250.9ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 20:04:16 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (26.0ms)
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    13: <p>
+    14:   <strong>Category:</strong>
+    15:   <h3> Resources under this category </h3>
+    16:   <% Resource.where(category_id: @category.id).each do |resource| %>
+    17:     <li> <%= resource.name %> </li>
+    18:   <% end %>
+    19: </p>
+  app/views/resources/show.html.erb:16:in `_app_views_resources_show_html_erb__718132366_45489672'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (934.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (881.3ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2128.9ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 20:04:58 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 130ms (Views: 128.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 20:04:58 +0200
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 20:13:07 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 127ms (Views: 126.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 20:13:07 +0200
+
+
+Started GET "/resources/1/edit" for ::1 at 2016-10-23 20:13:17 +0200
+Processing by ResourcesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/edit.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 160ms (Views: 149.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 20:13:22 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  Rendered resources/index.html.erb within layouts/application (39.0ms)
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined local variable or method `product' for #<#<Class:0x8775270>:0x811aaf0>):
+    20:       <tr>
+    21:         <td><%= resource.name %></td>
+    22:         <td><%= resource.description %></td>
+    23:         <td><%= link_to Category.find(product.category_id).name, category_path(product.category_id) %></td>
+    24: 		<td>
+    25: 			<% unless resource.link.empty? %>
+    26: 				<a href="<%= resource.link %>" target="_blank">Open Link</a>
+  app/views/resources/index.html.erb:23:in `block in _app_views_resources_index_html_erb___566910697_67686348'
+  app/views/resources/index.html.erb:19:in `_app_views_resources_index_html_erb___566910697_67686348'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1030.4ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (920.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2096.3ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 20:14:34 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (41.0ms)
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `category_path' for #<#<Class:0x8775270>:0x8660c10>):
+    20:       <tr>
+    21:         <td><%= resource.name %></td>
+    22:         <td><%= resource.description %></td>
+    23:         <td><%= link_to Category.find(resource.category_id).name, category_path(resource.category_id) %></td>
+    24: 		<td>
+    25: 			<% unless resource.link.empty? %>
+    26: 				<a href="<%= resource.link %>" target="_blank">Open Link</a>
+  app/views/resources/index.html.erb:23:in `block in _app_views_resources_index_html_erb___566910697_70451280'
+  app/views/resources/index.html.erb:19:in `_app_views_resources_index_html_erb___566910697_70451280'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1279.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1611.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3019.3ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 21:37:51 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 126ms (Views: 125.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 21:37:51 +0200
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:38:20 +0200
+
+ActionController::RoutingError (No route matches [GET] "/categories"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (1223.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (876.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2013.7ms)
+
+
+Started GET "/categories/" for ::1 at 2016-10-23 21:38:38 +0200
+
+ActionController::RoutingError (No route matches [GET] "/categories"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (1187.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (849.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1949.4ms)
+
+
+Started GET "/categories/new" for ::1 at 2016-10-23 21:38:51 +0200
+
+ActionController::RoutingError (No route matches [GET] "/categories/new"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (1212.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (878.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1992.6ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 21:38:57 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 126ms (Views: 125.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:39:03 +0200
+
+ActionController::RoutingError (No route matches [GET] "/categories"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (1226.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (844.9ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1942.1ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:39:43 +0200
+
+NoMethodError (undefined method `categories' for #<ActionDispatch::Routing::Mapper:0x52966e0>):
+  config/routes.rb:3:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (887.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (843.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1938.4ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:41:15 +0200
+Processing by CategoriesController#index as HTML
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered categories/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 134ms (Views: 129.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 21:41:15 +0200
+
+
+Started GET "/" for ::1 at 2016-10-23 21:41:32 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 141ms (Views: 134.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:41:35 +0200
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 132ms (Views: 130.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:42:12 +0200
+Processing by CategoriesController#index as HTML
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered categories/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 131ms (Views: 130.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:42:28 +0200
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 121ms (Views: 120.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 21:42:28 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:42:29 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:42:29 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 21:42:29 +0200
+
+
+Started GET "/" for ::1 at 2016-10-23 21:42:30 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 120ms (Views: 119.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/categories" for ::1 at 2016-10-23 21:42:32 +0200
+Processing by CategoriesController#index as HTML
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered categories/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 118ms (Views: 118.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-10-23 21:42:33 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 124ms (Views: 123.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 21:42:54 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 120ms (Views: 118.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/1/edit" for ::1 at 2016-10-23 21:42:57 +0200
+Processing by ResourcesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCategory Load (1.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (3.0ms)
+  Rendered resources/edit.html.erb within layouts/application (27.0ms)
+Completed 200 OK in 161ms (Views: 159.2ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/resources/1" for ::1 at 2016-10-23 21:43:07 +0200
+Processing by ResourcesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rnngJtehbfe6Q7rfnukNIGoJS59M5IntM3u/I3foEem/pM/ZzXvekw8VaCtmbtBJ7Bslb7pNNfRvaeiDFnIbgw==", "resource"=>{"name"=>"Test", "description"=>"Test", "link"=>""}, "category_id"=>"", "commit"=>"Update Resource", "id"=>"1"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  UPDATE "resources" SET "category_id" = ?, "updated_at" = ? WHERE "resources"."id" = ?  [["category_id", ""], ["updated_at", "2016-10-23 19:43:07.397614"], ["id", 1]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/resources/1
+Completed 302 Found in 13ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 21:43:07 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 123ms (Views: 121.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 21:43:12 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", nil]]
+  Rendered resources/index.html.erb within layouts/application (26.0ms)
+Completed 500 Internal Server Error in 95ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=):
+  app/views/resources/index.html.erb:23:in `block in _app_views_resources_index_html_erb___566910697_62321232'
+  app/views/resources/index.html.erb:19:in `_app_views_resources_index_html_erb___566910697_62321232'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (943.3ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (882.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2037.4ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 21:47:26 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", nil]]
+  Rendered resources/index.html.erb within layouts/application (27.0ms)
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=):
+  app/views/resources/index.html.erb:23:in `block in _app_views_resources_index_html_erb___566910697_62321232'
+  app/views/resources/index.html.erb:19:in `_app_views_resources_index_html_erb___566910697_62321232'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (914.3ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (856.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1968.0ms)
+
+
+Started GET "/resources/1/edit" for ::1 at 2016-10-23 21:47:34 +0200
+Processing by ResourcesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (2.0ms)
+  Rendered resources/edit.html.erb within layouts/application (26.0ms)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 1.0ms)
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:24: syntax error, unexpected '>'
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:29: unknown regexp options - dv
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:30: syntax error, unexpected '<'
+  <div class="field">
+   ^
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:33: syntax error, unexpected '<', expecting ')'
+  </div>
+   ^
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:36: unknown regexp options - dv
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:37: unterminated string meets end of file
+C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/views/resources/_form.html.erb:37: syntax error, unexpected end-of-input, expecting ')'):
+  app/views/resources/_form.html.erb:24: syntax error, unexpected '>'
+  app/views/resources/_form.html.erb:29: unknown regexp options - dv
+  app/views/resources/_form.html.erb:30: syntax error, unexpected '<'
+  app/views/resources/_form.html.erb:33: syntax error, unexpected '<', expecting ')'
+  app/views/resources/_form.html.erb:36: unknown regexp options - dv
+  app/views/resources/_form.html.erb:37: unterminated string meets end of file
+  app/views/resources/_form.html.erb:37: syntax error, unexpected end-of-input, expecting ')'
+  app/views/resources/edit.html.erb:3:in `_app_views_resources_edit_html_erb___434295453_71894520'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (951.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (891.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2035.7ms)
+
+
+Started GET "/resources/1/edit" for ::1 at 2016-10-23 21:49:01 +0200
+Processing by ResourcesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/edit.html.erb within layouts/application (26.7ms)
+Completed 200 OK in 146ms (Views: 143.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 21:49:01 +0200
+
+
+Started GET "/resources/1/edit" for ::1 at 2016-10-23 22:10:48 +0200
+Processing by ResourcesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/edit.html.erb within layouts/application (29.0ms)
+Completed 200 OK in 169ms (Views: 165.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 22:10:49 +0200
+
+
+Started PATCH "/resources/1" for ::1 at 2016-10-23 22:11:01 +0200
+Processing by ResourcesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WYK7pu2b/ow45wnYQWspl4Z6Fg6kxamjp+iUjn2aSfVIX5RZ90FN6I2x2yy57PT+AGh4/lJsFbr7+sMuHABDnw==", "resource"=>{"name"=>"Test", "description"=>"Test", "link"=>""}, "category_id"=>"1", "commit"=>"Update Resource", "id"=>"1"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "resources" SET "category_id" = ?, "updated_at" = ? WHERE "resources"."id" = ?[0m  [["category_id", "1"], ["updated_at", "2016-10-23 20:11:01.394792"], ["id", 1]]
+  [1m[35m (5.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/resources/1
+Completed 302 Found in 13ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 22:11:01 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 129ms (Views: 127.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 22:12:07 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mResource Load (1.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (41.0ms)
+Completed 500 Internal Server Error in 122ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined local variable or method `resource' for #<#<Class:0x75e9f28>:0x6290aa8>):
+    12: 
+    13: <p>
+    14:   <strong>Category:</strong>
+    15:   <%= Category.find(resource.category_id).name %>
+    16: </p>
+    17: 
+    18: <% unless @resource.link.empty? %>
+  app/views/resources/show.html.erb:15:in `_app_views_resources_show_html_erb__718132366_63853500'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1347.9ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (927.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2343.7ms)
+
+
+Started GET "/resources/1" for ::1 at 2016-10-23 22:12:20 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (1.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 129ms (Views: 127.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 22:12:20 +0200
+
+
+Started GET "/resources" for ::1 at 2016-10-23 22:12:33 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (1.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 133ms (Views: 131.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-23 22:12:56 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 136ms (Views: 135.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-23 22:12:57 +0200
+
+
+Started GET "/categories" for ::1 at 2016-10-23 22:13:01 +0200
+Processing by CategoriesController#index as HTML
+  [1m[36mCategory Load (1.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered categories/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 127ms (Views: 124.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-10-23 22:13:07 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (1.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 127ms (Views: 125.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 14:22:03 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.2.5.1) lib/active_record/migration.rb:392:in `check_pending!'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:373:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (3359.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (7106.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (15021.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddScoreToResources (20161025064706)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "resources" ADD "score" integer[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161025064706"]]
+  [1m[36m (15.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for ::1 at 2016-10-25 14:28:55 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (2.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (3.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (503.9ms)
+Completed 200 OK in 4690ms (Views: 4452.2ms | ActiveRecord: 15.0ms)
+
+
+Started GET "/assets/categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-25 14:29:03 +0200
+
+
+Started GET "/assets/resources.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-10-25 14:29:04 +0200
+
+
+Started GET "/assets/scaffolds.self-cc9bb6ef8f36679d7adfde4cd580f448354ffe39cfc7099c7aa0c4e7d494f534.css?body=1" for ::1 at 2016-10-25 14:29:04 +0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-25 14:29:04 +0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-25 14:29:04 +0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-25 14:29:04 +0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-25 14:29:05 +0200
+
+
+Started GET "/assets/categories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-25 14:29:05 +0200
+
+
+Started GET "/assets/resources.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-10-25 14:29:05 +0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-25 14:29:05 +0200
+
+
+Started GET "/resources/1/like" for ::1 at 2016-10-25 14:36:32 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mResource Load (1.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 1]]
+Completed 400 Bad Request in 89ms (ActiveRecord: 6.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:115:in `resource_params'
+  app/controllers/resources_controller.rb:12:in `block in like'
+  app/controllers/resources_controller.rb:11:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (58.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (13.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (10041.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (9363.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (21392.6ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 14:46:58 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (10.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (50.0ms)
+Completed 200 OK in 480ms (Views: 463.0ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-25 14:47:01 +0200
+Processing by ResourcesController#new as HTML
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (110.1ms)
+  Rendered resources/new.html.erb within layouts/application (180.1ms)
+Completed 200 OK in 528ms (Views: 524.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/resources" for ::1 at 2016-10-25 14:47:19 +0200
+Processing by ResourcesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+06uwtYtFmHZNrF3UecRRUnBtx17QXPUZ1llHF2EFeMDnk2sc/SSFmWZdvXtpJR3jVIHFDKyzO6FKHopoaMhnA==", "resource"=>{"name"=>"Test2", "description"=>"Test2", "link"=>""}, "category_id"=>"1", "commit"=>"Create Resource"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "resources" ("name", "description", "link", "score", "last_modified", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Test2"], ["description", "Test2"], ["link", ""], ["score", 0], ["last_modified", "2016-10-25"], ["category_id", "1"], ["created_at", "2016-10-25 12:47:19.566338"], ["updated_at", "2016-10-25 12:47:19.566338"]]
+  [1m[35m (7.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/resources/2
+Completed 302 Found in 24ms (ActiveRecord: 10.0ms)
+
+
+Started GET "/resources/2" for ::1 at 2016-10-25 14:47:19 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 327ms (Views: 324.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 14:47:25 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (1.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 397ms (Views: 393.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 14:47:29 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 2]]
+Completed 400 Bad Request in 7ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:115:in `resource_params'
+  app/controllers/resources_controller.rb:12:in `block in like'
+  app/controllers/resources_controller.rb:11:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (40.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (9716.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (9311.9ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (21367.7ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:08:05 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (10.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (260.0ms)
+Completed 200 OK in 3146ms (Views: 3039.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 15:08:13 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (2.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 400 Bad Request in 8ms (ActiveRecord: 2.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:109:in `resource_params'
+  app/controllers/resources_controller.rb:9:in `block in like'
+  app/controllers/resources_controller.rb:8:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (38.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (9682.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (9364.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (3.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (21587.8ms)
+
+
+Started GET "/resources/" for ::1 at 2016-10-25 15:28:20 +0200
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/controllers/resources_controller.rb:71: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+...son: @resource.errors, status :unprocessable_entity }
+...                               ^):
+  app/controllers/resources_controller.rb:71: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (30.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (8170.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (4141.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (12625.5ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:29:39 +0200
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/controllers/resources_controller.rb:71: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+...son: @resource.errors, status :unprocessable_entity }
+...                               ^):
+  app/controllers/resources_controller.rb:71: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (3574.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (10.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (7509.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (11493.5ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:35:42 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/controllers/resources_controller.rb:71: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+...son: @resource.errors, status :unprocessable_entity }
+...                               ^):
+  app/controllers/resources_controller.rb:71: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (46.9ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (3596.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1015.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2328.4ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:37:10 +0200
+
+SyntaxError (C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/app/controllers/resources_controller.rb:14: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+...son: @resource.errors, status :unprocessable_entity }
+...                               ^):
+  app/controllers/resources_controller.rb:14: syntax error, unexpected tSYMBEG, expecting keyword_do or '{' or '('
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (890.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (828.2ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1890.7ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:38:30 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (46.9ms)
+Completed 200 OK in 516ms (Views: 483.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 15:38:50 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:115:in `resource_params'
+  app/controllers/resources_controller.rb:12:in `block in like'
+  app/controllers/resources_controller.rb:11:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1061.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (896.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2154.4ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:41:42 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (15.6ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (31.3ms)
+Completed 200 OK in 156ms (Views: 130.8ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 15:41:46 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", "2"]]
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:117:in `resource_params'
+  app/controllers/resources_controller.rb:13:in `block in like'
+  app/controllers/resources_controller.rb:12:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (935.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (878.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2020.4ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:43:02 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (62.5ms)
+Completed 200 OK in 500ms (Views: 477.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 15:43:07 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", "2"]]
+Completed 400 Bad Request in 4ms (ActiveRecord: 1.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:117:in `resource_params'
+  app/controllers/resources_controller.rb:13:in `block in like'
+  app/controllers/resources_controller.rb:12:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (914.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (876.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1998.3ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:52:54 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 141ms (Views: 147.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/2/edit" for ::1 at 2016-10-25 15:52:57 +0200
+Processing by ResourcesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mResource Load (1.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered resources/_form.html.erb (42.0ms)
+  Rendered resources/edit.html.erb within layouts/application (65.0ms)
+Completed 200 OK in 191ms (Views: 188.2ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/resources/2" for ::1 at 2016-10-25 15:53:12 +0200
+Processing by ResourcesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sGac3ZzHPCV1ub2IP8nlxuUHQO4QViPFa/ksMhNXM823dR2tEqgnq2tStUMe8xk+RYajId6I4ebEmHZUUFe9CQ==", "resource"=>{"name"=>"Test2", "description"=>"Test2", "link"=>"https://github.com/media-programming-rails/example-app/blob/master/app/controllers/habits_controller.rb"}, "category_id"=>"1", "commit"=>"Update Resource", "id"=>"2"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "resources" SET "link" = ?, "updated_at" = ? WHERE "resources"."id" = ?  [["link", "https://github.com/media-programming-rails/example-app/blob/master/app/controllers/habits_controller.rb"], ["updated_at", "2016-10-25 13:53:12.542907"], ["id", 2]]
+  [1m[36m (7.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/resources/2
+Completed 302 Found in 17ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/resources/2" for ::1 at 2016-10-25 15:53:12 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 144ms (Views: 142.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:55:39 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (46.9ms)
+Completed 200 OK in 203ms (Views: 210.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 15:55:41 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", "2"]]
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: resource):
+  app/controllers/resources_controller.rb:117:in `resource_params'
+  app/controllers/resources_controller.rb:13:in `block in like'
+  app/controllers/resources_controller.rb:12:in `like'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (934.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (884.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (2003.3ms)
+
+
+Started GET "/" for ::1 at 2016-10-25 15:57:50 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (31.3ms)
+Completed 200 OK in 156ms (Views: 131.1ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/resources/2/like" for ::1 at 2016-10-25 15:57:52 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "resources" SET "score" = ?, "updated_at" = ? WHERE "resources"."id" = ?  [["score", 1], ["updated_at", "2016-10-25 13:57:52.812412"], ["id", 2]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/resources
+Completed 302 Found in 12ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 15:57:52 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered resources/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 120ms (Views: 119.5ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/resources/1" for ::1 at 2016-10-25 15:58:06 +0200
+Processing by ResourcesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"I+Z36GvzpDPgEBv0bt2nuYUglXm32DQ/gDTgFNUs2FMk9faY5Zy/vf77Ez9P51tBJaF2tnkG9hwvVbpylixWlw==", "id"=>"1"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 1]]
+  [1m[35m (6.0ms)[0m  commit transaction
+[paperclip] deleting C:/Users/Martin24989/Desktop/HTW/Semester_M_I/Media-Programming/Projekt/study-resource-compendium/public/system/resources/files/000/000/001/original/example.pdf
+Redirected to http://localhost:3000/resources
+Completed 302 Found in 19ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 15:58:07 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 123ms (Views: 115.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources/2/dislike" for ::1 at 2016-10-25 15:58:31 +0200
+Processing by ResourcesController#dislike as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mResource Load (1.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "resources" SET "score" = ?, "updated_at" = ? WHERE "resources"."id" = ?[0m  [["score", 0], ["updated_at", "2016-10-25 13:58:31.776450"], ["id", 2]]
+  [1m[35m (5.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/resources
+Completed 302 Found in 10ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 15:58:31 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 121ms (Views: 120.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 16:02:42 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (31.3ms)
+Completed 200 OK in 125ms (Views: 127.6ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/resources/2" for ::1 at 2016-10-25 16:02:52 +0200
+Processing by ResourcesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"o/g0c5mLRn8+B4Htr3UIuluohlsloEke3hPiKZMknxuk67UDF+Rd8SDsiSaOT/RC+ylllOt+iz1xcrhP0CQR3w==", "id"=>"2"}
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "resources" WHERE "resources"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/resources
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 16:02:52 +0200
+Processing by ResourcesController#index as HTML
+  [1m[36mResource Load (0.0ms)[0m  [1mSELECT "resources".* FROM "resources"[0m
+  Rendered resources/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 125ms (Views: 120.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources/new" for ::1 at 2016-10-25 16:02:57 +0200
+Processing by ResourcesController#new as HTML
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered resources/_form.html.erb (4.0ms)
+  Rendered resources/new.html.erb within layouts/application (26.0ms)
+Completed 200 OK in 143ms (Views: 141.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/resources" for ::1 at 2016-10-25 16:03:22 +0200
+Processing by ResourcesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4jieczcgeMYgBkeJseQcn7hCMvfsJI5A0Db0SS7GBt7lKx8DuU9jSD7tT0KQ3uBnGMPROCL6TGN/V64vbcaIGg==", "resource"=>{"name"=>"Test", "description"=>"Test", "link"=>"https://github.com/DiMartino89/study-resource-compendium"}, "category_id"=>"1", "commit"=>"Create Resource"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "resources" ("name", "description", "link", "score", "last_modified", "category_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["name", "Test"], ["description", "Test"], ["link", "https://github.com/DiMartino89/study-resource-compendium"], ["score", 0], ["last_modified", "2016-10-25"], ["category_id", "1"], ["created_at", "2016-10-25 14:03:22.048040"], ["updated_at", "2016-10-25 14:03:22.048040"]]
+  [1m[36m (6.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/resources/3
+Completed 302 Found in 12ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/resources/3" for ::1 at 2016-10-25 16:03:22 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mResource Load (1.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 110ms (Views: 109.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 16:03:25 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (1.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (1.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 120ms (Views: 117.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/resources/3/like" for ::1 at 2016-10-25 16:03:27 +0200
+Processing by ResourcesController#like as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "resources" SET "score" = ?, "updated_at" = ? WHERE "resources"."id" = ?  [["score", 1], ["updated_at", "2016-10-25 14:03:27.069901"], ["id", 3]]
+  [1m[36m (6.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/resources/3
+Completed 302 Found in 13ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/resources/3" for ::1 at 2016-10-25 16:03:27 +0200
+Processing by ResourcesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mResource Load (0.0ms)[0m  SELECT  "resources".* FROM "resources" WHERE "resources"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 115ms (Views: 113.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/resources" for ::1 at 2016-10-25 16:03:30 +0200
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered resources/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 119ms (Views: 118.4ms | ActiveRecord: 0.0ms)
