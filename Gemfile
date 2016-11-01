@@ -44,7 +44,6 @@ group :test do
   # capybara for testing (simulating userinput)
   gem'capybara'
   gem 'launchy'
-  gem 'nokogiri'
 end
 
 group :development do
