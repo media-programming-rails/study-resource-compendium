@@ -14,6 +14,8 @@ class FeaturesTest < ActionDispatch::IntegrationTest
     find_button(id: "resourceLike-#{resource.id}").click
 
     assert page.has_content? "+"
+    # refesh resource
+    resource.reload
     # resource should have score 1
     assert_equal 1, resource.score
   end
