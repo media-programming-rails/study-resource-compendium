@@ -88,7 +88,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
-    nokogiri (1.6.8.1)
+    nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -174,7 +174,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  nokogiri
   paperclip
   rails (= 4.2.5.1)
   sass-rails (~> 5.0)

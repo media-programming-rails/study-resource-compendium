@@ -2085,3 +2085,100 @@ Processing by ResourcesController#index as HTML
   [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
   Rendered resources/index.html.erb within layouts/application (2.0ms)
 Completed 200 OK in 119ms (Views: 118.4ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (12.0ms)[0m  DELETE FROM "categories"
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Git"], ["description", "Version control"], ["created_at", "2016-11-01 20:58:08.736901"], ["updated_at", "2016-11-01 20:58:08.736901"]]
+  [1m[36m (7.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "categories" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Ruby"], ["description", "Object Oriented Programming language"], ["created_at", "2016-11-01 20:58:08.770923"], ["updated_at", "2016-11-01 20:58:08.770923"]]
+  [1m[35m (8.0ms)[0m  commit transaction
+  [1m[36mSQL (8.0ms)[0m  [1mDELETE FROM "resources"[0m
+  [1m[35mCategory Load (1.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."name" = ?  ORDER BY "categories"."id" ASC LIMIT 1  [["name", "Git"]]
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "resources" ("name", "description", "category_id", "score", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "GitHub"], ["description", "How people build software"], ["category_id", "#<Category:0x34eda10>"], ["score", 0], ["created_at", "2016-11-01 20:58:08.929029"], ["updated_at", "2016-11-01 20:58:08.929029"]]
+  [1m[36m (11.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mCategory Load (1.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."name" = ?  ORDER BY "categories"."id" ASC LIMIT 1  [["name", "Ruby"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "resources" ("name", "description", "category_id", "score", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "RubyOnRails"], ["description", "Imagine what you could build if you learned Ruby on Rails..."], ["category_id", "#<Category:0x2855f10>"], ["score", 0], ["created_at", "2016-11-01 20:58:08.959048"], ["updated_at", "2016-11-01 20:58:08.959048"]]
+  [1m[36m (7.0ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for ::1 at 2016-11-01 21:59:36 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (1.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 0]]
+  Rendered resources/index.html.erb within layouts/application (69.0ms)
+Completed 500 Internal Server Error in 174ms (ActiveRecord: 3.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=#<Category:0x34eda10>):
+  app/views/resources/index.html.erb:32:in `block in _app_views_resources_index_html_erb___719378098_44750172'
+  app/views/resources/index.html.erb:20:in `_app_views_resources_index_html_erb___719378098_44750172'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (851.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.9ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (798.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1822.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-01 22:11:42 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (0.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", nil]]
+  Rendered resources/index.html.erb within layouts/application (69.0ms)
+Completed 500 Internal Server Error in 172ms (ActiveRecord: 3.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=):
+  app/views/resources/index.html.erb:32:in `block in _app_views_resources_index_html_erb___891605793_44480376'
+  app/views/resources/index.html.erb:20:in `_app_views_resources_index_html_erb___891605793_44480376'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (844.1ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (794.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1832.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-01 22:12:00 +0100
+Processing by ResourcesController#index as HTML
+  [1m[35mResource Load (1.0ms)[0m  SELECT "resources".* FROM "resources"
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 0]]
+  Rendered resources/index.html.erb within layouts/application (25.0ms)
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 1.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=#<Category:0x34eda10>):
+  app/views/resources/index.html.erb:32:in `block in _app_views_resources_index_html_erb___891605793_41221104'
+  app/views/resources/index.html.erb:20:in `_app_views_resources_index_html_erb___891605793_41221104'
+
+
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (857.6ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (775.7ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller3-1-1/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (1783.9ms)
