@@ -1,15 +1,19 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authorize
+  
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.all
+	@current_user = User.find(session[:user_id])
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+	@current_user = User.find(session[:user_id])
   end
 
   # GET /categories/new
@@ -19,6 +23,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+	@current_user = User.find(session[:user_id])
   end
 
   # POST /categories

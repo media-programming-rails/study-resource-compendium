@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
-  root "resources#index"
+  #root "resources#index"
+ 
+  root to: "resources#index"
+  
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
+  get '/signup', to: 'users#new'
+  post '/users', to: 'users#create'
   
   get '/resources/:id/like', to: 'resources#like', as: "like"
   get '/resources/:id/dislike', to: 'resources#dislike', as: "dislike"  
   
+  resources :users
   resources :resources
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.

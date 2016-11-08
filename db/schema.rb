@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025064706) do
+ActiveRecord::Schema.define(version: 20161108131158) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20161025064706) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.integer  "score"
+    t.string   "owner_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "salt"
   end
 
 end

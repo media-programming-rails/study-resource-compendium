@@ -1,6 +1,8 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :like, :dislike]
 
+  before_filter :authorize
+  
   # GET /resources/1/like
   def like
     @resource.score = @resource.score + 1
@@ -57,8 +59,9 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
-  @resource.score = 0
+    @resource.score = 0
 	@resource.last_modified = Date.today
+	@resource.owner_id = current_user.id
 	@resource.category_id = params[:category_id] 
 
     respond_to do |format|
@@ -75,6 +78,7 @@ class ResourcesController < ApplicationController
   # PATCH/PUT /resources/1
   # PATCH/PUT /resources/1.json
   def update
+	@resource.owner_id = current_user.id
 	@resource.category_id = params[:category_id]
 	
     respond_to do |format|
@@ -106,6 +110,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :description, :category_id, :link, :file, :last_modified, :score)
+      params.require(:resource).permit(:name, :description, :category_id, :link, :file, :last_modified, :owner_id, :score)
     end
 end
