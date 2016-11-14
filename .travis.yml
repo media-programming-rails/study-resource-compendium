@@ -1,9 +1,14 @@
 language: ruby
 rvm:
  - 2.2
- - jruby
- - rbx-2
+ # these two trigger incompatibilities during gem resolution/ or installation in general, skipping:
+ #- jruby
+ #- rbx-2
 # uncomment and edit the following line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
 # specify install command to skip the --deployment flag
 install: bundle install --jobs=3 --retry=3
+# as this is an old rails version, you need different scripts:
+script:
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rake test
