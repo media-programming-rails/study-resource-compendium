@@ -1,6 +1,6 @@
 == README
 
-Build Status: [![Build Status](https://travis-ci.org/DiMartino89/study-resource-compendium.svg?branch=master)](https://travis-ci.org/DiMartino89/study-resource-compendium)
+Build Status: [![Build Status](https://travis-ci.org/media-programming-rails/study-resource-compendium.svg?branch=master)](https://travis-ci.org/media-programming-rails/study-resource-compendium)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
